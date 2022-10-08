@@ -5,6 +5,7 @@ import (
   
 
   "github.com/gin-gonic/gin"
+  "github.com/gin-contrib/cors"
   
 )
   
@@ -13,6 +14,10 @@ import (
 func setupRouter() *gin.Engine {
   r := gin.Default()
 
+  config := cors.DefaultConfig()
+
+  config.AllowOrigins = []string{"https://link-sharer.vercel.app/"}
+
   r.GET("/ping", func(c *gin.Context) {
     c.String(http.StatusOK, "pong")
   })
@@ -20,7 +25,7 @@ func setupRouter() *gin.Engine {
   r.POST("/handler", Handler)
   r.POST("/link", LinkHandler)
  
-
+  r.Use(cors.New(config))
   return r
 }
 
