@@ -15,7 +15,7 @@ func setupRouter() *gin.Engine {
   r := gin.Default()
 
   config := cors.Config{
-    AllowOrigins: []string{"https://link-sharer.vercel.app/"},
+    AllowOrigins: []string{"https://link-sharer.vercel.app"},
     AllowMethods: []string{"POST"},
     AllowHeaders: []string{"Origin", "Content-Type", "Access-Control-Allow-Origin"},
   }
