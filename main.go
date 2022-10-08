@@ -14,12 +14,13 @@ import (
 func setupRouter() *gin.Engine {
   r := gin.Default()
 
-  config := cors.DefaultConfig()
-
-  //config.AllowOrigins = []string{"https://link-sharer.vercel.app"}
-  config.AllowAllOrigins = true	
-  config.AllowHeaders = []string{"content-type", "Access-Control-Allow-Origin"}
-
+  config := cors.Config{
+    AllowOrigins: []string{"https://link-sharer.vercel.app/"},
+    AllowMethods: []string{"POST"},
+    AllowHeaders: []string{"Origin", "Content-Type", "Access-Control-Allow-Origin"},
+  }
+  
+  r.Use(cors.New(config))	
   r.GET("/ping", func(c *gin.Context) {
     c.String(http.StatusOK, "pong")
   })
@@ -27,7 +28,7 @@ func setupRouter() *gin.Engine {
   r.POST("/handler", Handler)
   r.POST("/link", LinkHandler)
  
-  r.Use(cors.New(config))
+  
   return r
 }
 
