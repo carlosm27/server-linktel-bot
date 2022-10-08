@@ -65,7 +65,7 @@ type sendMessageReqBody struct {
 
 func ResponseBot(chatID int64) error {
 
-	viper.SetConfigFile(".env")
+	viper.SetConfigFile("ENV")
 	viper.ReadInConfig()
 
 
@@ -121,7 +121,7 @@ func Handler(c *gin.Context) {
 
 func linkSender(url string, chatID int64) error {
 
-	viper.SetConfigFile(".env")
+	viper.SetConfigFile("ENV")
 	viper.ReadInConfig()
 
 
