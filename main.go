@@ -17,6 +17,7 @@ func setupRouter() *gin.Engine {
   config := cors.DefaultConfig()
 
   config.AllowOrigins = []string{"https://link-sharer.vercel.app"}
+  config.AllowHeaders = []string{"Origin"}
 
   r.GET("/ping", func(c *gin.Context) {
     c.String(http.StatusOK, "pong")
